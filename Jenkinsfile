@@ -30,13 +30,14 @@ pipeline {
         }
 
         stage('Docker Test') {
-            steps {
-                sh 'docker run -d --name nextidea-app -p 8084:80 nextidea-app:latest'
-                sh 'sleep 3'
-                sh 'curl -f http://localhost:8084'
-                sh 'docker rm -f nextidea-app'
-            }
-        }
+                    steps {
+                        sh 'docker rm -f nextidea-app || true'
+                        sh 'docker run -d --name nextidea-app -p 8084:80 nextidea-app:latest'
+                        sh 'sleep 3'
+                        sh 'curl -f http://localhost:8084'
+                        sh 'docker rm -f nextidea-app'
+                    }
+                }
 
         stage('Deploy') {
             steps {
