@@ -47,7 +47,7 @@ pipeline {
 
         stage('Verify') {
             steps {
-                sh 'curl -f http://localhost:8084'
+                sh 'curl -f http://localhost:8085'
             }
         }
     }
